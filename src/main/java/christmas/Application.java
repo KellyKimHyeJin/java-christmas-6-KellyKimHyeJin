@@ -13,6 +13,7 @@ public class Application {
         outputView.printBonusMenu();
         outputView.printBenefit();
         outputView.printTotalBenefit();
-        outputView.pr
+        outputView.printPrice();
+        outputView.printBadge();
     }
 }

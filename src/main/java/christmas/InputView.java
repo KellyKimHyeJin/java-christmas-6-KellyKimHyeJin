@@ -7,7 +7,8 @@ import java.util.StringTokenizer;
 
 public class InputView {
 
-    public int date;
+    public static int date;
+    public static Menu menu;
     public void inputDate(){
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
         System.out.println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)");
@@ -31,11 +32,11 @@ public class InputView {
         int mainNumber = 0;
         int dessertNumber = 0;
         int drinkNumber = 0;
-        StringTokenizer st = new StringTokenizer(totalMenu, ",-");
         while (true) {
             try {
+                StringTokenizer st = new StringTokenizer(totalMenu, ",-");
                 while (st.hasMoreTokens()) {
-                    Menu menu = Menu.equalName(st.nextToken());
+                    menu = Menu.equalName(st.nextToken());
                     if(Objects.equals(menu.getMenuKind(), "애피타이저")){
                         AppitizerNumber++;
                     } else if(Objects.equals(menu.getMenuKind(), "매인")){
@@ -54,8 +55,8 @@ public class InputView {
                         throw e;
                     }
                     menu.setMenuNumber(Integer.parseInt(st.nextToken()));
-                    break;
                 }
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 totalMenu = Console.readLine();
