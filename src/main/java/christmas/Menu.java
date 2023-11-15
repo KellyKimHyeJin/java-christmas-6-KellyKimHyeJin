@@ -39,6 +39,10 @@ public enum Menu {
         return this.name;
     }
 
+    public int getMenuPrice(){
+        return this.price;
+    }
+
     public String getMenuKind(){
         return this.kind;
     }
