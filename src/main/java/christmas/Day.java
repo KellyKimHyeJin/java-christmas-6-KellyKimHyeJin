@@ -1,13 +1,13 @@
 package christmas;
 
 public enum Day {
-    MONDAY(0),
-    TUESDAY(1),
-    WEDNESDAY(2),
-    THURSDAY(3),
-    FRIDAY(4),
-    SATURDAY(5),
-    SUNDAY(6);
+    MONDAY(3),
+    TUESDAY(4),
+    WEDNESDAY(5),
+    THURSDAY(6),
+    FRIDAY(0),
+    SATURDAY(1),
+    SUNDAY(2);
 
     private int dayIdentify;
     Day(int dayIdentify){
