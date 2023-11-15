@@ -2,6 +2,7 @@ package christmas;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Objects;
 import java.util.StringTokenizer;
 
 public class InputView {
@@ -26,19 +27,42 @@ public class InputView {
     public void inputMenu() {
         System.out.println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
         String totalMenu = Console.readLine();
+        int AppitizerNumber = 0;
+        int mainNumber = 0;
+        int dessertNumber = 0;
+        int drinkNumber = 0;
         StringTokenizer st = new StringTokenizer(totalMenu, ",-");
         while (true) {
             try {
                 while (st.hasMoreTokens()) {
                     Menu menu = Menu.equalName(st.nextToken());
+                    if(Objects.equals(menu.getMenuKind(), "애피타이저")){
+                        AppitizerNumber++;
+                    } else if(Objects.equals(menu.getMenuKind(), "매인")){
+                        mainNumber++;
+                    } else if(Objects.equals(menu.getMenuKind(), "디저트")){
+                        dessertNumber++;
+                    } else if(Objects.equals(menu.getMenuKind(), "음료")){
+                        drinkNumber++;
+                    }
+                    if(drinkNumber > 0 && AppitizerNumber==0 && mainNumber==0 && dessertNumber==0){
+                        IllegalArgumentException e = new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+                        throw e;
+                    }
+                    if(drinkNumber + AppitizerNumber + mainNumber + dessertNumber > 20){
+                        IllegalArgumentException e = new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+                        throw e;
+                    }
                     menu.setMenuNumber(Integer.parseInt(st.nextToken()));
+                    break;
                 }
-                break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+                System.out.println(e.getMessage());
                 totalMenu = Console.readLine();
             }
         }
     }
+
+
 
 }

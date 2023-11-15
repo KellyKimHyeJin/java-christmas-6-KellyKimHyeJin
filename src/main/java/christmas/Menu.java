@@ -1,5 +1,8 @@
 package christmas;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum Menu {
     MUSHROOMSOUP("양송이수프",6000,"애피타이저",0),
     TAPAS("타파스",5500,"애피타이저",0),
@@ -28,6 +31,10 @@ public enum Menu {
     public void setMenuNumber(int number){
         this.number = number;
     }
+
+    public int getMenuNumber(){
+        return this.number;
+    }
     public String getMenuName(){
         return this.name;
     }
@@ -43,5 +50,15 @@ public enum Menu {
             }
         }
         return null;
+    }
+
+    public static List<Menu> orderedMenu(){
+        List<Menu> menuList = new ArrayList<>();
+        for(Menu menu: Menu.values()){
+            if(menu.getMenuNumber() >= 1){
+                menuList.add(menu);
+            }
+        }
+        return menuList;
     }
 }
